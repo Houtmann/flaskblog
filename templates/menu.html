@@ -1,0 +1,26 @@
+{% block head%} 
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" /><title> flaskB </title>
+
+<link rel="stylesheet" href="static/css/bootstrap.css" type="text/css" media="all" />
+</head>
+	
+<body>
+
+ <div class="navbar navbar-default">
+<div class="navbar-header">
+    <a class="navbar-brand" href="#">Menu</a>
+</div>
+ <ul class="nav navbar-nav">
+ <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+ <li><a href="{{ url_for('add_article') }}">Ajouter un article</a></li>
+ <li><a href="{{ url_for('profil') }}">Profil</a></li>
+{% if current_user|is_admin %}
+  <li><a href="{{ url_for('management') }}">Management</a></li>
+  {% endif %}
+ </ul>
+ </div> 
+{% endblock %}
+
