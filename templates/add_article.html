@@ -1,6 +1,12 @@
 {% include 'menu.html' %}
 
-
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+ 
+<!-- Include the default theme -->
+<link rel="stylesheet" href="minified/themes/default.min.css" type="text/css" media="all" />
+ 
+<!-- Include the editors JS -->
+<script type="text/javascript" src="minified/jquery.sceditor.bbcode.min.js"></script>
 
  {% with messages = get_flashed_messages() %}
   {% if messages %}
@@ -15,7 +21,14 @@
 
     </div>
 
-
+    <script>
+    $(function() {
+    $("textarea").sceditor({
+    plugins: "bbcode",
+    style: "minified/jquery.sceditor.default.min.css"
+    });
+    });
+    </script>
 
 	
       <div class="col-md-6 col-md-offset-1">

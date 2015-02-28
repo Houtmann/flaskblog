@@ -19,7 +19,8 @@
                       <th>Titre</th>
                       <th>Date</th>
                       <th>Auteur</th>
-                      <th>voir</th>                                          
+                      <th>voir</th> 
+					<th>Supprimer</th>  					  
                   </tr>
               </thead>   
               <tbody>
@@ -32,6 +33,10 @@
 					<form  action="" name="id" value={{mess.id}} method=POST>
 					<a href="{{mess.id}}"><span class="label label-success">Voir</span></a>
 					</form>
+					<td>
+					<form  action="" name="id" value={{mess.id}} method=POST>
+					<a href="{{mess.id}}"><span class="label label-danger">Supprimez</span></a>
+					</form></td> 
 					
                     
                     </td>                                       
@@ -57,7 +62,8 @@
                       <th>Date</th>
                       <th>Auteur</th>
                       <th>Article</th>
-					  <th>voir</th> 					  
+					  <th>voir</th>
+					<th>Supprimer</th>  					  
                   </tr>
               </thead>   
               <tbody>
@@ -71,6 +77,11 @@
 					<form  action="" name="id" value={{mess.message.id}} method=POST>
 					<a href="{{mess.message.id}}"><span class="label label-success">Voir</span></a>
 					</form>
+					
+					<td>
+					<form  action="" name="id" value={{mess.id}} method=POST>
+					<a href="{{mess.id}}"><span class="label label-danger">Supprimez</span></a>
+					</form></td> 
 					
                     
                     </td>                                       

@@ -11,13 +11,13 @@ import sys
 from models import Utilisateur, Messages, Commentaires
 import bcrypt
 from peewee import *
-import bbcode
 from playhouse.flask_utils import PaginatedQuery
 from flask_peewee.utils import *
+import bbcode
 
 # configuration
 DEBUG = True
-SECRET_KEY = 'key'
+SECRET_KEY = 'hadmagic123456*::5'
 # create our little application :)
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -86,10 +86,7 @@ def register():
                      request.form['password'])
     return render_template("register.html")
 
-
-
 @app.route("/", methods=["GET", "POST"])
-
 @app.route('/index/<int:page>', methods=['GET', 'POST'])
 @login_required
 def index(page=1):
@@ -104,8 +101,6 @@ def index(page=1):
     return object_list('index.html', message, paginate_by=4)
 
 
-    
-
 @app.route("/add_article", methods=["GET", "POST"])
 @login_required
 def add_article():
@@ -115,15 +110,15 @@ def add_article():
             user = Utilisateur.get(Utilisateur.email == session.get('email'))
             Messages.add_message(request.form['titre'],
                                     request.form['message'],
-                                    user.id)
-            
+                                    user.id)   
             
             return redirect(url_for('index' ))
         except Exception:
             flash('''Le contenu vide n'est pas autorisé''')             
     return render_template('add_article.html')
-            
-            
+
+    
+        
 
   
 @app.route('/<value>', methods=["GET", "POST"])
@@ -134,20 +129,23 @@ def article(value):
                               Messages.content,
                               Messages.date_post,
                               Messages.user).join(Utilisateur, JOIN_LEFT_OUTER).where(Messages.id == value)
-    
-    user_id = session.get('user_id') # Pour associer la session à l'user id
-    if request.method == 'POST':
-        Commentaires.add_commentaire(request.form['message'], value, user_id)
-        return redirect(value)
-    
+
     coms = Commentaires.select(Commentaires.id,
                                Commentaires.content,
                                Commentaires.date,
                                Messages.user,
                                Utilisateur.pseudo).join(Messages, JOIN_LEFT_OUTER).join(Utilisateur, JOIN_LEFT_OUTER).where(Messages.id == value)
     
+    user_id = session.get('user_id') # Pour associer la session à l'user id
+    if request.method == 'POST':
+        
+        Commentaires.add_commentaire(request.form['commentaire'], value, user_id)
+        return redirect(value)
+        
+    
+    
     return render_template('article.html',
-                           loader=message, com_loader=coms)
+                        loader=message, com_loader=coms)
 
 
 
@@ -185,6 +183,8 @@ def profil():
 if __name__ == '__main__':
     
     app.jinja_env.filters['is_admin'] = is_admin
+    app.jinja_env.filters['bbcode'] = bbcode.render_html
+    
     app.run(host='0.0.0.0', debug = True)
    
     

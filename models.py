@@ -13,7 +13,7 @@ from peewee import *
 
 
 
-database = MySQLDatabase('dev3', **{'host': '127.0.0.1', 'port': 5001, 'user': 'root', 'password': ''})
+database = MySQLDatabase('dev3', **{'host': '127.0.0.1', 'port': 5001, 'user': 'root', 'password': '123456'})
 
 class UnknownField(object):
     pass
@@ -57,9 +57,13 @@ class Messages(BaseModel):
                         content=content,
                         date_post=date,
                         user=user)
-         
         else:
-            raise Exception('pas de titre et de contenu')
+            raise Exception('Pas de titre et de contenu')
+
+    def delete_message(message_id):
+        q = Messages.delete().where(Messages.id == message_id)
+        q.execute()
+        
 
     class Meta:
         db_table = 'messages'
@@ -73,7 +77,7 @@ class Commentaires(BaseModel):
 
     def add_commentaire(content, message, user):
         date = datetime.datetime.today()
-        if  content != '':
+        if content != '':
             Commentaires.create(message=message,
                         content=content,
                         date=date,
@@ -91,7 +95,6 @@ def create_tables():
     database.create_tables([Utilisateur, Messages, Commentaires])
 
 
-#create_tables()
 
 
 

@@ -4,10 +4,13 @@
  {% block article%} 
 <div class="container">
 <div class="col-md-8">
+
 {% for i in loader %}
 
-   <h1>{{i['titre']}}</h1>
-   <p>{{i['content']}}</p>
+
+	
+   <h1>{{i['titre']}}</h1> 
+   <p>{{i['content'] | bbcode | safe }}</p>
     <div>
 <span class="badge">Auteur : {{i.user.pseudo}}</span><div class="pull-right"><span class="label label-default">{{i['date_post']}}</span> 
 </div>
@@ -22,8 +25,8 @@
   
             <div class="panel panel-default">
                 <div class="panel-body">                
-                    <form accept-charset="UTF-8" action="" method="POST">
-                        <textarea class="form-control counted" name="message" placeholder="Type in your message" rows="1" style="margin-bottom:10px;"></textarea>
+                    <form accept-charset="UTF-8" action="" name='comment' method="POST">
+                        <textarea class="form-control counted" name="commentaire" placeholder="Type in your message" rows="1" style="margin-bottom:10px;"></textarea>
                         
                         <button class="btn btn-info" type="submit">Poster</button>
                     </form>
@@ -45,8 +48,12 @@
 <!-- /row -->
 <!-- /col-sm-1 -->
 <div class="panel panel-default">
+
 <div class="panel-heading">
-<strong> {{ i.message.user.pseudo}}</strong> <span class="text-muted">le {{ i.date}}</span>
+
+
+
+<strong> {{ i.message.user.pseudo}}</strong> <span class="text-muted">le {{ i.date}}</span>  
 </div>
 <div class="panel-body">
 {{ i.content }}

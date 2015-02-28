@@ -9,7 +9,7 @@
 {% for i in object_list %}
 
    <h1>{{i.titre}}</h1>
-   <p>{{i.content[:180]}} ...</p>
+   <p>{{ i.content[:180] | bbcode | safe}} ...</p>
    
     <div>
 	
