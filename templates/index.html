@@ -3,26 +3,33 @@
 
 
 <div class="container">
-<div class="col-md-8">
-
-
+	<div class="row clearfix">
+			<div class="row clearfix">
+				<div class="col-md-10 column">
+				
+				
+				
+				
+	
+	
+				
 {% for i in object_list %}
 
-   <h1>{{i.titre}}</h1>
-   <p>{{ i.content[:180] | bbcode | safe}} ...</p>
-   
-    <div>
-	
+<h1>{{i.titre}}</h1>
+    <p>{{ i.content[:180] | bbcode | safe}} ... 
 	<form  action="" name="id" value={{i[0]}} method=POST>
 	<a href="{{i.id}}">Lire la suite</a>
-	</form>
-<span class="badge">{{i.user.pseudo}}</span>
-	
-		<div class="pull-right"><span class="label label-default">{{i.date_post}}</span> 
-</div>
-    </div>
- {% endfor %} 
+	</form></p>
+    <div>
+<span class="badge">Date : {{i['date_post']}}</span>
+<div class="pull-right"><span class="label label-default">Auteur : {{i.user.pseudo}}</span> 
 
+<a href=""><span class="label label-warning">Tags :</span></div> </a>        
+     </div>
+    <hr>
+
+ {% endfor %}
+    
  
  <div class="text-center"><ul class="pagination pagination-large">
 {% if page > 1 %}
@@ -32,11 +39,23 @@
   <a href="./?page={{ page + 1 }}">Next</a>
 {% endif %}
 
-
 </div>
+				</div>
+				<div class="col-md-2 column">
+				
+				
+				
+				
+				
+				</div>
+			</div>
+		
+	</div>
+</div>
+
+
+
 
  
 
-    <hr>
-</div>
-</div>
+ 

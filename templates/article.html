@@ -7,14 +7,18 @@
 
 {% for i in loader %}
 {% if current_user|is_admin %}
-  <li><a href="{{ url_for('delete_article', message_id=i.id) }}">Delete</a></li>
+  <li><a href="{{ url_for('main.delete_article', message_id=i.id) }}">Delete</a></li>
   {% endif %}
 
 	
    <h1>{{i['titre']}}</h1> 
    <p>{{i['content'] | bbcode | safe }}</p>
     <div>
-<span class="badge">Auteur : {{i.user.pseudo}}</span><div class="pull-right"><span class="label label-default">{{i['date_post']}}</span> 
+<p><span class="label label-primary">Auteur : {{i.user.pseudo}}</span> 
+<span class="label label-primary">Date : {{i['date_post']}}</span>
+Tags: <a href=""><span class="label label-warning">Bootstrap</span></a> <a href=""></a></p>
+
+
 </div>
     </div>
  {% endfor %} 		

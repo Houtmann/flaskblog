@@ -27,7 +27,6 @@ class Utilisateur(BaseModel):
     email = CharField(unique=True)
     level = TextField(default='user')
     nom = TextField()
-    nombre_post = IntegerField(null=True)
     password = TextField()
     prenom = TextField()
     pseudo = TextField()
@@ -48,15 +47,17 @@ class Messages(BaseModel):
     content = TextField()
     date_post = DateTimeField()
     titre = TextField()
+    tags = TextField()
     user = ForeignKeyField(db_column='Utilisateur_id', rel_model=Utilisateur, to_field='id')
 
-    def add_message(titre, content, user):
+    def add_message(titre, content, user, tags):
         date = datetime.datetime.today()
         if titre and content != '':
             Messages.create(titre=titre,
-                        content=content,
-                        date_post=date,
-                        user=user)
+                            content=content,
+                            date_post=date,
+                            tags=tags,
+                            user=user)
         else:
             raise Exception('Pas de titre et de contenu')
 

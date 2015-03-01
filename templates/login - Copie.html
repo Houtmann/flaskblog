@@ -13,16 +13,6 @@
 <div class="container">
     <div class="row">
 		<div class="span12">
-		
-		 {% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <div class="alert alert-warning">
-    {% for message in messages %}
-      <strong><center>{{ message }}</center></strong>
-    {% endfor %}
-    
-  {% endif %}
-{% endwith %}
 			<form class="form-horizontal" action='' method="POST">
 			  <fieldset>
 			    <div id="legend">
@@ -32,15 +22,14 @@
 			      <!-- Username -->
 			      <label class="control-label"  for="username">Username</label>
 			      <div class="controls">
-				  {{form.login}}
-			        
+			        <input type="text" id="mail" name="mail" placeholder="" class="input-xlarge">
 			      </div>
 			    </div>
 			    <div class="control-group">
 			      <!-- Password-->
 			      <label class="control-label" for="password">Password</label>
 			      <div class="controls">
-			        {{form.password}}
+			        <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
 			      </div>
 			    </div>
 			    <div class="control-group">

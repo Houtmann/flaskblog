@@ -1,8 +1,4 @@
-
-
 {% include 'management_menu.html' %}	
-		
-		
 		
 		<div class="col-md-10 content">
             <div class="panel panel-default">
@@ -35,7 +31,7 @@
 					</form>
 					<td>
 					
-					<a href="{{ url_for('delete_article', message_id=mess.id) }}"><span class="label label-danger">Supprimez</span></a>
+					<a href="{{ url_for('main.delete_article', message_id=mess.id) }}"><span class="label label-danger">Supprimez</span></a>
 					</td> 
 					
                     
@@ -48,11 +44,12 @@
 	</div>
             </div>
 		</div>	
+		
+ <div class="panel panel-default">
 <div class="panel-heading">
                     Derniers Commentaires : 
                 </div>
-                <div class="panel-body">
-                    					
+                <div class="panel-body">     					
 	<div class="row">
 		<div class="span5">
             <table class="table table-striped table-condensed">
@@ -91,15 +88,10 @@
             </table> 
 		
 		 </div>
-		  
-	</div>
-	
-            
-			
-			
-			
-			
-	
+	</div>	
+</div>
+            </div>
+		</div>				
 		
 		<footer class="pull-left footer">
 			<p class="col-md-12">

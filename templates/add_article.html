@@ -21,14 +21,6 @@
 
     </div>
 
-    <script>
-    $(function() {
-    $("textarea").sceditor({
-    plugins: "bbcode",
-    style: "minified/jquery.sceditor.default.min.css"
-    });
-    });
-    </script>
 
 	
       <div class="col-md-6 col-md-offset-1">
@@ -42,6 +34,13 @@
               <label class="col-md-3 control-label" for="name">Titre</label>
               <div class="col-md-9">
                 <input id="name" name="titre" type="text" placeholder="Your name" class="form-control">
+              </div>
+            </div>
+			<!-- Tags input-->
+			<div class="form-group">
+              <label class="col-md-3 control-label" for="name">Tags</label>
+              <div class="col-md-9">
+                <input id="tags" name="tags" type="text" placeholder="Tags1;Tags2;..." class="form-control">
               </div>
             </div>
     
