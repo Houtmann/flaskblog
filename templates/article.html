@@ -6,7 +6,9 @@
 <div class="col-md-8">
 
 {% for i in loader %}
-
+{% if current_user|is_admin %}
+  <li><a href="{{ url_for('delete_article', message_id=i.id) }}">Delete</a></li>
+  {% endif %}
 
 	
    <h1>{{i['titre']}}</h1> 

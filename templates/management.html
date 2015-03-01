@@ -34,9 +34,9 @@
 					<a href="{{mess.id}}"><span class="label label-success">Voir</span></a>
 					</form>
 					<td>
-					<form  action="" name="id" value={{mess.id}} method=POST>
-					<a href="{{mess.id}}"><span class="label label-danger">Supprimez</span></a>
-					</form></td> 
+					
+					<a href="{{ url_for('delete_article', message_id=mess.id) }}"><span class="label label-danger">Supprimez</span></a>
+					</td> 
 					
                     
                     </td>                                       
