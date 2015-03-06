@@ -19,6 +19,13 @@ from decorator import admin_required, login_required, is_admin
 
 management = Blueprint('management', __name__)
 
+
+@management.route('/delete_comment/<int:comment_id>', methods=["GET", "POST"])
+@admin_required
+def delete_comment(comment_id):
+    Commentaires.delete_comment(comment_id)
+    return redirect(url_for('main.index'))
+
 @management.route('/management', methods=["GET", "POST"])
 @admin_required
 def admin():
@@ -43,8 +50,11 @@ def admin():
 @management.route('/management_utils', methods=["GET", "POST"])
 @admin_required
 def admin_utils():
-    return render_template('management_utilisateurs.html')
-
+    utilisateur = Utilisateur.select(Utilisateur.email,
+                                      Utilisateur.pseudo,
+                                      Utilisateur.date_register,
+                                      Utilisateur.reputation)
+    return render_template('management_utilisateurs.html', loader = utilisateur)
 
 
 

@@ -5,6 +5,7 @@ from management.management import management
 from models import Utilisateur, Messages, Commentaires
 from decorator import is_admin
 import bbcode
+from flaskext.markdown import Markdown
 from jinja2 import Environment, PackageLoader
 
 DEBUG = True
@@ -16,7 +17,7 @@ app.config.from_envvar('flaskb', silent=True)
 environment = Environment()
 
 
-
+Markdown(app)
 app.register_blueprint(main)
 app.register_blueprint(management)
 app.register_blueprint(profil)

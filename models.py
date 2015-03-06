@@ -6,14 +6,18 @@ from flask import Flask, request, session, url_for, redirect, \
 from flask import g
 import jinja2
 import sys
-import pymysql
 import datetime
 import bcrypt
 from peewee import *
+import pymysql
+
 
 
 
 database = MySQLDatabase('dev3', **{'host': '127.0.0.1', 'port': 5001, 'user': 'root', 'password': '*'})
+
+
+
 
 class UnknownField(object):
     pass
@@ -34,10 +38,12 @@ class Utilisateur(BaseModel):
       
     def hash_password(password):
         """fonction de hashage du mot de passe en bcrypt"""
-        
-        passw = password.encode('latin1')
+        passwd = str(password)
+        passw = passwd.encode('latin1')
         hashed = bcrypt.hashpw(passw, bcrypt.gensalt())
         return((bcrypt.hashpw(passw, hashed)))
+
+    
     
     class Meta:
         db_table = 'utilisateur'
@@ -88,6 +94,10 @@ class Commentaires(BaseModel):
         else:
             raise Exception('pas de titre et de contenu')
 
+    def delete_comment(comment_id):
+        q = Commentaires.delete().where(Commentaires.id == comment_id)
+        q.execute()
+
     class Meta:
         db_table = 'commentaires'
 
@@ -99,8 +109,6 @@ def create_tables():
 
 
 #create_tables()
-
-
 
 
 

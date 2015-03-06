@@ -14,8 +14,9 @@ from peewee import *
 from playhouse.flask_utils import PaginatedQuery
 from flask_peewee.utils import *
 import bbcode
+from flaskext.markdown import Markdown
 from decorator import admin_required, login_required, is_admin
-from .forms import LoginForm
+from .forms import LoginForm, RegisterForm
 
 
 main = Blueprint('main', __name__)
@@ -30,7 +31,7 @@ def auth_user(user):
 @main.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
-    if request.method == 'POST':
+    if form.validate_on_submit():
         try:
             user = Utilisateur.get(Utilisateur.email == form.login.data)
         except Utilisateur.DoesNotExist:
@@ -47,17 +48,14 @@ def login():
 
 
 
-
-
-
-
-
-
-
 @main.route("/register", methods=["GET", "POST"])
 def register():
-    if request.method == 'POST':
-        return render_template("register.html")
+    form = RegisterForm(request.form)
+    if request.method == 'POST' and form.validate(): 
+        user = form.save()   
+        return redirect(url_for('main.login'))
+    
+    return render_template("register.html", form=form)
 
 
 @main.route("/", methods=["GET", "POST"])
@@ -67,6 +65,7 @@ def index(page=1):
     message = Messages.select(Messages.id,
                               Messages.titre,
                               Messages.content,
+                              Messages.tags,
                               Messages.date_post,
                               Messages.user).join(Utilisateur, JOIN_LEFT_OUTER).order_by(Messages.date_post.desc())
 

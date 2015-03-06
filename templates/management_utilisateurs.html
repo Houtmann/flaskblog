@@ -16,21 +16,24 @@
             <table class="table table-striped table-condensed">
                   <thead>
                   <tr>
-                      <th>Titre</th>
-                      <th>Date</th>
-                      <th>Auteur</th>
+                      <th>Pseudo</th>
+					  
+                      <th>Date register</th>
+                      <th>Email</th>
+					  <th>Nom</th>
+					  <th>Prénom</th>
                       <th>voir</th>                                          
                   </tr>
               </thead>   
               <tbody>
-			  {% for mess in loader %}
+			  {% for util in loader %}
                 <tr>
-                    <td>{{mess.titre}}</td>
-                    <td>{{mess.date_post}}</td>
-                    <td>{{mess.user.nom}} {{mess.user.prenom}}</td>
+                    <td>{{util.pseudo}}</td>
+                    <td>{{util.date_register}}</td>
+                    <td>{{util.email}}</td>
 					<td>
-					<form  action="" name="id" value={{mess.id}} method=POST>
-					<a href="{{mess.id}}"><span class="label label-success">Voir</span></a>
+					<form  action="" name="id" value={{util.id}} method=POST>
+					<a href="{{util.id}}"><span class="label label-success">Voir</span></a>
 					</form>
 					
                     

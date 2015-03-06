@@ -65,6 +65,7 @@
               </thead>   
               <tbody>
 			  {% for mess in com_loader %}
+			  
                 <tr>
                     <td>{{mess.content[:30]}}</td>
                     <td>{{mess.date}}</td>
@@ -76,9 +77,9 @@
 					</form>
 					
 					<td>
-					<form  action="" name="id" value={{mess.id}} method=POST>
-					<a href="{{mess.id}}"><span class="label label-danger">Supprimez</span></a>
-					</form></td> 
+					
+					<a href="{{ url_for('management.delete_comment', comment_id=mess.id) }}"><span class="label label-danger">Supprimez</span></a>
+					
 					
                     
                     </td>                                       

@@ -12,11 +12,13 @@
 
 	
    <h1>{{i['titre']}}</h1> 
-   <p>{{i['content'] | bbcode | safe }}</p>
+   {% filter markdown %}
+   <p>{{i['content']  | safe}}</p>
+   {% endfilter %}
     <div>
 <p><span class="label label-primary">Auteur : {{i.user.pseudo}}</span> 
 <span class="label label-primary">Date : {{i['date_post']}}</span>
-Tags: <a href=""><span class="label label-warning">Bootstrap</span></a> <a href=""></a></p>
+Tags: <a href=""><span class="label label-warning">{{i.tags}}</span></a> <a href=""></a></p>
 
 
 </div>
