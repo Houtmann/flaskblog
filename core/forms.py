@@ -18,7 +18,6 @@ is_username = regexp(USERNAME_RE,
 class LoginForm(Form):
     login = StringField('Username')
     password = PasswordField('Password')
-
     submit = SubmitField(_("Login"))
 
     

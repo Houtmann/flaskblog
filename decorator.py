@@ -22,6 +22,7 @@ def is_admin(current_user):
     else:
         return redirect(url_for('index'))
 
+
 def admin_required(f):
     @wraps(f)
     def inner(*args, **kwargs):
@@ -37,6 +38,6 @@ def login_required(f):
     @wraps(f)
     def inner(*args, **kwargs):
         if not session.get('logged_in'):
-            return redirect(url_for('main.login'))
+            return redirect(url_for('main.test'))
         return f(*args, **kwargs)
     return inner

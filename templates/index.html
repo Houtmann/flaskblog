@@ -8,8 +8,8 @@
 {% for i in object_list %}
 <h1>{{i.titre}}</h1>
 
-    <p>{% filter markdown %}{{ i.content[:180]  | safe }} ... 
-	{% endfilter %}
+    <p>{{ i.content[:180] | striptags | safe }} ... 
+	
 	<form  action="" name="id" value={{i[0]}} method=POST>
 	<a href="{{i.id}}">Lire la suite</a>
 	</form></p>

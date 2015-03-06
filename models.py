@@ -38,8 +38,8 @@ class Utilisateur(BaseModel):
       
     def hash_password(password):
         """fonction de hashage du mot de passe en bcrypt"""
-        passwd = str(password)
-        passw = passwd.encode('latin1')
+        
+        passw = password.encode('latin1')
         hashed = bcrypt.hashpw(passw, bcrypt.gensalt())
         return((bcrypt.hashpw(passw, hashed)))
 
@@ -111,4 +111,5 @@ def create_tables():
 #create_tables()
 
 
+                       
 

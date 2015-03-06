@@ -3,7 +3,7 @@
       
  {% block article%} 
 <div class="container">
-<div class="col-md-8">
+<div class="col-md-10 column">
 
 {% for i in loader %}
 {% if current_user|is_admin %}
@@ -29,7 +29,7 @@ Tags: <a href=""><span class="label label-warning">{{i.tags}}</span></a> <a href
 <p></p>
 
 <div class="container">
-<div class="col-md-8">
+<div class="col-md-10 column">
   
             <div class="panel panel-default">
                 <div class="panel-body">                
@@ -49,7 +49,7 @@ Tags: <a href=""><span class="label label-warning">{{i.tags}}</span></a> <a href
 
 {% block comment %} 
 <div class="container">
-<div class="col-md-8">                       
+<div class="col-md-10 column">                     
 <h3>Commentaires :</h3>
 <!-- /col-sm-12 -->
 {% for i in com_loader %}
@@ -58,13 +58,13 @@ Tags: <a href=""><span class="label label-warning">{{i.tags}}</span></a> <a href
 <div class="panel panel-default">
 
 <div class="panel-heading">
-
-
-
 <strong> {{ i.message.user.pseudo}}</strong> <span class="text-muted">le {{ i.date}}</span>  
 </div>
 <div class="panel-body">
-{{ i.content }}
+{% filter markdown %}
+
+{{ i.content  | safe}}
+  {% endfilter %}
 </div><!-- /panel-body -->
 </div><!-- /panel panel-default -->{% endfor %} 
 </div><!-- /col-sm-5 -->

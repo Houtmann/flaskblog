@@ -1750,6 +1750,8 @@ pre code {
   }
   .col-md-10 {
     width: 83.33333333%;
+	white-space:normal !important;
+    word-wrap:break-word; 
   }
   .col-md-9 {
     width: 75%;
@@ -5067,6 +5069,8 @@ a.list-group-item-danger.active:focus {
           box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 .panel-body {
+	white-space:normal !important;
+    word-wrap:break-word; 
   padding: 15px;
 }
 .panel-heading {

@@ -25,13 +25,13 @@ def auth_user(user):
     session['logged_in'] = True
     session['user_id'] = user.id
     session['email'] = user.email
-
+    
 
 
 @main.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
-    if form.validate_on_submit():
+    if request.method == 'POST':
         try:
             user = Utilisateur.get(Utilisateur.email == form.login.data)
         except Utilisateur.DoesNotExist:
@@ -81,7 +81,7 @@ def add_article():
         try:
             user = Utilisateur.get(Utilisateur.email == session.get('email'))
             Messages.add_message(request.form['titre'],
-                                 request.form['message'],
+                                 request.form['editor1'],
                                  user.id,
                                  request.form['tags'])
 
@@ -89,6 +89,7 @@ def add_article():
         except Exception:
             flash('''Le contenu vide n'est pas autorisé''')
     return render_template('add_article.html')
+    
 
 
 @main.route('/delete_article/<int:message_id>', methods=["GET", "POST"])

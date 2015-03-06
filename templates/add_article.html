@@ -1,12 +1,15 @@
 {% include 'menu.html' %}
 
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
- 
-<!-- Include the default theme -->
-<link rel="stylesheet" href="minified/themes/default.min.css" type="text/css" media="all" />
- 
-<!-- Include the editors JS -->
-<script type="text/javascript" src="minified/jquery.sceditor.bbcode.min.js"></script>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="static/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="static/ckeditor/adapters/jquery.js"></script>
+<link href="static/samples/sample.css" rel="stylesheet">
+
+
+
+
+
 
  {% with messages = get_flashed_messages() %}
   {% if messages %}
@@ -23,7 +26,7 @@
 
 
 	
-      <div class="col-md-6 col-md-offset-1">
+      <div class="col-md-8 col-md-offset-1">
         <div class="well well-sm">
           <form class="form-horizontal" action="" method=POST>
           <fieldset>
@@ -43,15 +46,35 @@
                 <input id="tags" name="tags" type="text" placeholder="Tags1;Tags2;..." class="form-control">
               </div>
             </div>
-    
-            <!-- Message body -->
+
+<!-- Message body -->
             <div class="form-group">
               <label class="col-md-3 control-label" for="message">Your message</label>
-              <div class="col-md-9">
-                <textarea class="form-control" id="message" name="message" placeholder="Please enter your message here..." rows="22"></textarea>
+              <div class="col-md-9" id="editor">
+                <textarea class="ckeditor" id="editor1" name="editor1" rows='20'> </textarea>
               </div>
             </div>
+			
+				
+
+	
+		<script type="text/javascript">
+        CKEDITOR.replace( 'editor1' );
+      </script>	
+	
+
+
+		
+			
+			
+			
+			
+			
+			
+            
+			
     
+	
             <!-- Form actions -->
             <div class="form-group">
               <div class="col-md-12 text-right">
